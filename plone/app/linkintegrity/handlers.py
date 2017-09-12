@@ -108,7 +108,10 @@ def modifiedContent(obj, event):
     if retriever is not None:
         links = retriever.retrieveLinks()
         refs = getObjectsFromLinks(obj, links)
-        updateReferences(obj, refs)
+        try:
+            updateReferences(obj, refs)
+        except KeyError:
+            logger.info('KeyError Exception Raised in modifiedContent()')
 
 # BBB
 modifiedArchetype = modifiedContent
